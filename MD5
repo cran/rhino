@@ -1,8 +1,8 @@
-6927e8d0cf3bd2a6aa19b6d97afe25a0 *DESCRIPTION
+e31ff4be20e04d161a6c44df76a30975 *DESCRIPTION
 49c1283f28cd71960c59154ab14c18bc *NAMESPACE
 623e181ad9a176e57b5d4ed52ff72ec7 *R/addins.R
-d910e7c0de209642c8c8c287c0e55ffc *R/app.R
-00bbe1e8d4b5586e28cf37abfe47697f *R/config.R
+5b761ec612de99f83a37dd4e604b046b *R/app.R
+dcd3951b0a3efb57291dd503ec7ca4ff *R/config.R
 a413f0eda77589ce3c40258366a54fb6 *R/data.R
 e36a5793c33f3314311df5a968729620 *R/init.R
 eb6b95439d0ad366abe7dcb1201ebbc9 *R/log.R
@@ -10,6 +10,7 @@ eb6b95439d0ad366abe7dcb1201ebbc9 *R/log.R
 acd3cc002688aeafed5dfdd0b66d7272 *R/rhino.R
 a4b158c13ca1a3778516030beebcf63a *R/tools.R
 376a982795bbbdc51f59d736172626f3 *data/rhinos.rda
+3aff27d4fadbf2362d42eaad72dc0866 *inst/as_top_level.R
 f3645e8248bf492f6e5c6a427abb59dc *inst/rstudio/addins.dcf
 8ba503cc8bbdc02483238d2d2f7dbe00 *inst/rstudio/addins/module.R
 9d70823505c4453f713a1ce33117c3bc *inst/rstudio/templates/project/favicon.ico
@@ -23,14 +24,15 @@ d41d8cd98f00b204e9800998ecf8427e *inst/templates/app_structure/app/styles/main.s
 540e8404d0bf10a8237595023d99f5bb *inst/templates/app_structure/app/view/__init__.R
 9799882392016756f11cef6df75df9c0 *inst/templates/app_structure/config.yml
 20f68c8ecd9e50db8bc937763ecafc28 *inst/templates/app_structure/dot.lintr
+dda0511575f0074149b4140b0710d2e7 *inst/templates/app_structure/dot.rscignore
 4f8295c6437069d07ae84698aca26c76 *inst/templates/app_structure/rhino.yml
 c120e969b9665080170a62db2790100c *inst/templates/e2e_tests/tests/cypress.json
 51b54626c27a421926684f2cf346b09c *inst/templates/e2e_tests/tests/cypress/dot.gitignore
 d4e8bf197084578914e3f18104e20a24 *inst/templates/e2e_tests/tests/cypress/integration/app.spec.js
-45c8a86cf0c77a657f54c4c4986d6e40 *inst/templates/github_ci/dot.github/workflows/rhino-test.yml
+46f2129a8f69baf07be377173917f41b *inst/templates/github_ci/dot.github/workflows/rhino-test.yml
 3b3d6eacd30684a8d6e263a840882a2c *inst/templates/node/dot.eslintrc.json
 b3136a962c78ed1216a17f6c0e30b9c0 *inst/templates/node/dot.gitignore
-e1375921224be6108e7796a3fa6191f5 *inst/templates/node/dot.stylelintrc.json
+740706f380dfe05b1e3b722a46a2da1b *inst/templates/node/dot.stylelintrc.json
 e82f7d67c1f6ee6803c27d38a2db6679 *inst/templates/node/package.json
 47e584af192aa114ddfc2ecd1c7cb2ea *inst/templates/node/webpack.config.babel.js
 dc9518c7d42bcae5bef2ece608cafa68 *inst/templates/node/yarn.lock
@@ -53,5 +55,6 @@ b5eb4f29294bb4e927a76970d9ffe98c *man/lint_sass.Rd
 e83d25738dff7c2064275d644c4f97f5 *man/test_e2e.Rd
 56b7a18eed4151314d609b835c8a2b9a *man/test_r.Rd
 8faf8f808cb8f0db6390fb2f8a7ab76f *tests/testthat.R
+683c6413bd5263d0c6720feed1dda65d *tests/testthat/test-app.R
 b418e7c3dadd22af8994bbb8042055a6 *tests/testthat/test-config.R
 cc0ded8111e6e4b88317700609b1ce23 *tests/testthat/test-rhino.R

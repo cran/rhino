@@ -1,39 +1,59 @@
+# Make it possible to reload the app without restarting the R session.
+purge_box_cache <- function() {
+  loaded_mods <- loadNamespace("box")$loaded_mods
+  rm(list = ls(loaded_mods), envir = loaded_mods)
+}
+
 configure_logger <- function() {
   config <- config::get()
   log_level <- config$rhino_log_level
   log_file <- config$rhino_log_file
 
-  logger::log_threshold(log_level)
-  if (!is.na(log_file)) {
-    # Use an absolute path to avoid the effects of changing the working directory when the app runs.
-    if (!fs::is_absolute_path(log_file)) {
-      log_file <- fs::path_wd(log_file)
+  if (!is.null(log_level)) {
+    logger::log_threshold(log_level)
+  } else {
+    cli::cli_alert_warning(
+      "Skipping log level configuration, 'rhino_log_level' field not found in config."
+    )
+  }
+
+  if (!is.null(log_file)) {
+    if (!is.na(log_file)) {
+      # Use an absolute path to avoid the effects of changing the working directory when the app
+      # runs.
+      if (!fs::is_absolute_path(log_file)) {
+        log_file <- fs::path_wd(log_file)
+      }
+      logger::log_appender(logger::appender_file(log_file))
     }
-    logger::log_appender(logger::appender_file(log_file))
+  } else {
+    cli::cli_alert_warning(
+      "Skipping log file configuration, 'rhino_log_file' field not found in config."
+    )
   }
 }
 
 load_main_module <- function() {
-  # Purge the box module cache, so the app can be reloaded without restarting the R session.
-  loaded_mods <- loadNamespace("box")$loaded_mods
-  rm(list = ls(loaded_mods), envir = loaded_mods)
-
-  # Silence "no visible binding" notes on R CMD check.
-  r <- NULL
+  # Silence "no visible binding" notes raised by `box::use()` on R CMD check.
+  app <- NULL
   main <- NULL
-
   box::use(app/main)
   main
 }
 
 as_top_level <- function(shiny_module) {
-  list(
-    ui = shiny_module$ui("app"),
-    server = function(input, output) shiny_module$server("app")
-  )
+  # Necessary to avoid infinite recursion / bugs due to lazy evaluation:
+  # https://adv-r.hadley.nz/function-factories.html?q=force#forcing-evaluation
+  force(shiny_module)
+
+  # The actual function must be sourced with `keep.source = TRUE` for reloading to work:
+  # https://github.com/Appsilon/rhino/issues/157
+  wrap <- source(fs::path_package("rhino", "as_top_level.R"), keep.source = TRUE)$value
+
+  wrap(shiny_module)
 }
 
-with_head_tags <- function(ui) {
+attach_head_tags <- function(ui) {
   shiny::tagList(
     shiny::tags$head(
       shiny::tags$script(src = "static/js/app.min.js"),
@@ -42,6 +62,12 @@ with_head_tags <- function(ui) {
     ),
     ui
   )
+}
+
+with_head_tags <- function(ui) {
+  # The top-level UI must be a function for Shiny bookmarking to work.
+  if (is.function(ui)) function(request) attach_head_tags(ui(request))
+  else attach_head_tags(ui)
 }
 
 #' Rhino application
@@ -89,6 +115,7 @@ with_head_tags <- function(ui) {
 #' }
 #' @export
 app <- function() {
+  purge_box_cache()
   configure_logger()
   shiny::addResourcePath("static", fs::path_wd("app", "static"))
 

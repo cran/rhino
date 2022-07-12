@@ -1,6 +1,6 @@
 Package: rhino
 Title: A Framework for Enterprise Shiny Applications
-Version: 1.0.0
+Version: 1.1.0
 Authors@R: 
   c(
     person("Kamil", "Zyla", role = c("aut", "cre"), email = "kamil@appsilon.com"),
@@ -20,12 +20,12 @@ Depends: R (>= 2.10)
 Imports: box, cli, config, fs, glue, lintr (>= 2.0.0), logger, purrr,
         renv, rstudioapi, sass, shiny, styler, testthat (>= 3.0.0),
         utils, withr, yaml
-Suggests: knitr, rmarkdown
+Suggests: knitr, mockery, rcmdcheck, rmarkdown
 LazyData: true
 Config/testthat/edition: 3
 Config/testthat/parallel: true
 NeedsCompilation: no
-Packaged: 2022-04-19 15:58:16 UTC; kamil
+Packaged: 2022-07-12 08:27:33 UTC; kamil
 Author: Kamil Zyla [aut, cre],
   Jakub Nowicki [aut],
   Tymoteusz Makowski [aut],
@@ -33,4 +33,4 @@ Author: Kamil Zyla [aut, cre],
   Appsilon Sp. z o.o. [cph]
 Maintainer: Kamil Zyla <kamil@appsilon.com>
 Repository: CRAN
-Date/Publication: 2022-04-19 16:10:02 UTC
+Date/Publication: 2022-07-12 08:40:02 UTC
