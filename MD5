@@ -1,4 +1,4 @@
-e31ff4be20e04d161a6c44df76a30975 *DESCRIPTION
+0b0a41e26aa8d6aabff189587abac28b *DESCRIPTION
 49c1283f28cd71960c59154ab14c18bc *NAMESPACE
 623e181ad9a176e57b5d4ed52ff72ec7 *R/addins.R
 5b761ec612de99f83a37dd4e604b046b *R/app.R
@@ -41,13 +41,13 @@ fe26547978db36e0bf44ff35e36acab7 *inst/templates/renv/dot.renvignore
 2bcbb4843d20d7d59592d7eedf6d73a0 *inst/templates/rproj/Rproj.template
 db4f623e3229ba279fdfe47ceed1c4a0 *inst/templates/unit_tests/tests/testthat/test-main.R
 ff1b1f66c4b652c988f9982e5d52ca18 *man/app.Rd
-e5312f6eb4ffe97f475820b20b34933f *man/build_js.Rd
+268d293faf577b6435bd0c3d7879b436 *man/build_js.Rd
 7cdc4ec7ff4641c2c92144d2b8eed8ac *man/build_sass.Rd
 a883d153b7d0bc94f7e4130ff2b3e752 *man/diagnostics.Rd
 a3d1be43b0b4eb5b4d8099e5f247c51c *man/figures/rhino.png
 e15807a7ec937abe39bf34d7a69c0232 *man/format_r.Rd
 2d4825596e00a3054ccb4fc2d6a0d07a *man/init.Rd
-d9c9f05399a2cf653d517cf87b96a1d0 *man/lint_js.Rd
+59fbc041d5159bba52c83922afac60fa *man/lint_js.Rd
 7a130a3672bed674c29d9b355708fb74 *man/lint_r.Rd
 b5eb4f29294bb4e927a76970d9ffe98c *man/lint_sass.Rd
 9475b5de1e7b633b817cac352b4e1cc5 *man/log.Rd

@@ -1,6 +1,6 @@
 Package: rhino
 Title: A Framework for Enterprise Shiny Applications
-Version: 1.1.0
+Version: 1.1.1
 Authors@R: 
   c(
     person("Kamil", "Zyla", role = c("aut", "cre"), email = "kamil@appsilon.com"),
@@ -15,7 +15,7 @@ URL: https://appsilon.github.io/rhino/,
 BugReports: https://github.com/Appsilon/rhino/issues
 License: LGPL-3
 Encoding: UTF-8
-RoxygenNote: 7.1.2
+RoxygenNote: 7.2.1
 Depends: R (>= 2.10)
 Imports: box, cli, config, fs, glue, lintr (>= 2.0.0), logger, purrr,
         renv, rstudioapi, sass, shiny, styler, testthat (>= 3.0.0),
@@ -25,7 +25,7 @@ LazyData: true
 Config/testthat/edition: 3
 Config/testthat/parallel: true
 NeedsCompilation: no
-Packaged: 2022-07-12 08:27:33 UTC; kamil
+Packaged: 2022-09-07 13:28:57 UTC; kamil
 Author: Kamil Zyla [aut, cre],
   Jakub Nowicki [aut],
   Tymoteusz Makowski [aut],
@@ -33,4 +33,4 @@ Author: Kamil Zyla [aut, cre],
   Appsilon Sp. z o.o. [cph]
 Maintainer: Kamil Zyla <kamil@appsilon.com>
 Repository: CRAN
-Date/Publication: 2022-07-12 08:40:02 UTC
+Date/Publication: 2022-09-07 13:40:02 UTC
