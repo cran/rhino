@@ -4,7 +4,12 @@
 \alias{init}
 \title{Create Rhino application}
 \usage{
-init(dir = ".", github_actions_ci = TRUE, rhino_version = "rhino")
+init(
+  dir = ".",
+  github_actions_ci = TRUE,
+  rhino_version = "rhino",
+  force = FALSE
+)
 }
 \arguments{
 \item{dir}{Name of the directory to create application in.}
@@ -14,6 +19,9 @@ init(dir = ".", github_actions_ci = TRUE, rhino_version = "rhino")
 \item{rhino_version}{When using an existing \code{renv.lock} file,
 Rhino will install itself using \code{renv::install(rhino_version)}.
 You can provide this argument to use a specific version / source, e.g.\code{"Appsilon/rhino@v0.4.0"}.}
+
+\item{force}{Boolean; force initialization?
+By default, Rhino will refuse to initialize a project in the home directory.}
 }
 \value{
 None. This function is called for side effects.

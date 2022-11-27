@@ -26,6 +26,45 @@ lint_dir <- function(path) {
   lints
 }
 
+lint_file <- function(path) {
+  if (interactive()) {
+    message(cli::format_inline("Linting {.file {path}}"))
+  }
+  lints <- lintr::lint(path)
+  # Use the actual path provided by the user (typically relative) to make results more readable.
+  # (`lintr::lint()` normalizes paths, e.g. `app/main.R` becomes a full absolute path.)
+  for (i in seq_along(lints)) {
+    lints[[i]]$filename <- path
+  }
+  lints
+}
+
+lint_path <- function(path) {
+  # Check if path is a directory or a file such that nothing happens when the path is invalid.
+  if (fs::is_dir(path)) {
+    lint_dir(path)
+  } else if (fs::is_file(path)) {
+    lint_file(path)
+  } else {
+    cli::cli_abort("Unexpected invalid path: {.file {path}}.")
+  }
+}
+
+check_paths <- function(paths) {
+  readable <- fs::file_access(paths, mode = "read")
+
+  if (any(!readable)) {
+    cli::cli_abort(
+      c(
+        "Cannot lint an invalid path.",
+        i = "Please check that {.arg paths} contain only valid paths.",
+        i = "The following path{?s} cannot be read: {.file {paths[!readable]}}."
+      ),
+      call = NULL
+    )
+  }
+}
+
 #' Lint R
 #'
 #' Uses the `{lintr}` package to check all R sources in the `app` and `tests/testthat` directories
@@ -37,17 +76,22 @@ lint_dir <- function(path) {
 #' with the `legacy_max_lint_r_errors` option in `rhino.yml`.
 #' This can be useful when inheriting legacy code with multiple styling issues.
 #'
+#' @param paths Character vector of directories and files to lint.
+#' When `NULL` (the default), check `app` and `tests/testthat` directories.
+#'
 #' @return None. This function is called for side effects.
 #'
 #' @export
-lint_r <- function() {
+lint_r <- function(paths = NULL) {
+  if (is.null(paths)) {
+    paths <- c("app", "tests/testthat")
+  }
+  check_paths(paths)
   max_errors <- read_config()$legacy_max_lint_r_errors
   if (is.null(max_errors)) max_errors <- 0
 
-  lints <- c(
-    lint_dir("app"),
-    lint_dir(fs::path("tests", "testthat"))
-  )
+  lints <- do.call(c, lapply(paths, lint_path))
+
   # Applying `c()` removes the `lints` class which is responsible for pretty-printing.
   class(lints) <- "lints"
 
@@ -60,8 +104,11 @@ lint_r <- function() {
       "Found {errors} style error{?s}.",
       i = if (max_errors > 0) "At most {max_errors} error{?s} allowed."
     )
-    if (errors <= max_errors) cli::cli_inform(message)
-    else cli::cli_abort(message, call = NULL)
+    if (errors <= max_errors) {
+      cli::cli_inform(message)
+    } else {
+      cli::cli_abort(message, call = NULL)
+    }
   }
 }
 
@@ -107,7 +154,7 @@ format_r <- function(paths) {
 #' using [Babel](https://babeljs.io) and [webpack](https://webpack.js.org),
 #' so the latest JavaScript features can be used
 #' (including ECMAScript 2015 aka ES6 and newer standards).
-#' Requires Node.js and the `yarn` command to be available on the system.
+#' Requires Node.js to be available on the system.
 #'
 #' Functions/objects defined in the global scope do not automatically become `window` properties,
 #' so the following JS code:
@@ -138,15 +185,18 @@ format_r <- function(paths) {
 #' }
 #' @export
 build_js <- function(watch = FALSE) {
-  if (watch) yarn("build-js", "--watch", status_ok = 2)
-  else yarn("build-js")
+  if (watch) {
+    npm("run", "build-js", "--", "--watch", status_ok = 2)
+  } else {
+    npm("run", "build-js")
+  }
 }
 
 # nolint start
 #' Lint JavaScript
 #'
 #' Runs [ESLint](https://eslint.org) on the JavaScript sources in the `app/js` directory.
-#' Requires Node.js and the `yarn` command to be available on the system.
+#' Requires Node.js to be available on the system.
 #'
 #' If your JS code uses global objects defined by other JS libraries or R packages,
 #' you'll need to let the linter know or it will complain about undefined objects.
@@ -174,7 +224,11 @@ build_js <- function(watch = FALSE) {
 #' @export
 # nolint end
 lint_js <- function(fix = FALSE) {
-  yarn("lint-js", if (fix) "--fix")
+  if (fix) {
+    npm("run", "lint-js", "--", "--fix")
+  } else {
+    npm("run", "lint-js")
+  }
 }
 
 #' Build Sass
@@ -183,12 +237,12 @@ lint_js <- function(fix = FALSE) {
 #'
 #' The build method can be configured using the `sass` option in `rhino.yml`:
 #' 1. `node`: Use [Dart Sass](https://sass-lang.com/dart-sass)
-#' (requires Node.js and the `yarn` command to be available on the system).
+#' (requires Node.js to be available on the system).
 #' 2. `r`: Use the `{sass}` R package.
 #'
 #' It is recommended to use Dart Sass which is the primary,
 #' actively developed implementation of Sass.
-#' On systems without `yarn` you can use the `{sass}` R package as a fallback.
+#' On systems without Node.js you can use the `{sass}` R package as a fallback.
 #' It is not advised however, as it uses the deprecated
 #' [LibSass](https://sass-lang.com/blog/libsass-is-deprecated) implementation.
 #'
@@ -210,7 +264,7 @@ build_sass <- function(watch = FALSE) {
       error = function(error) {
         cli::cli_abort(c(
           error$message, error$body,
-          i = "If you can't use Node.js and yarn, try using sass: 'r' configuration."
+          i = "If you can't use Node.js, try using sass: 'r' configuration."
         ))
       }
     )
@@ -223,8 +277,11 @@ build_sass <- function(watch = FALSE) {
 }
 
 build_sass_node <- function(watch = FALSE) {
-  if (watch) yarn("build-sass", "--watch", status_ok = 2)
-  else yarn("build-sass")
+  if (watch) {
+    npm("run", "build-sass", "--", "--watch", status_ok = 2)
+  } else {
+    npm("run", "build-sass")
+  }
 }
 
 build_sass_r <- function() {
@@ -240,7 +297,7 @@ build_sass_r <- function() {
 #' Lint Sass
 #'
 #' Runs [Stylelint](https://stylelint.io/) on the Sass sources in the `app/styles` directory.
-#' Requires Node.js and the `yarn` command to be available on the system.
+#' Requires Node.js to be available on the system.
 #'
 #' @param fix Automatically fix problems.
 #' @return None. This function is called for side effects.
@@ -252,14 +309,18 @@ build_sass_r <- function() {
 #' }
 #' @export
 lint_sass <- function(fix = FALSE) {
-  yarn("lint-sass", if (fix) "--fix")
+  if (fix) {
+    npm("run", "lint-sass", "--", "--fix")
+  } else {
+    npm("run", "lint-sass")
+  }
 }
 
 #' Run Cypress end-to-end tests
 #'
 #' Uses [Cypress](https://www.cypress.io/) to run end-to-end tests
 #' defined in the `tests/cypress` directory.
-#' Requires Node.js and the `yarn` command to be available on the system.
+#' Requires Node.js to be available on the system.
 #'
 #' @param interactive Should Cypress be run in the interactive mode?
 #' @return None. This function is called for side effects.
@@ -271,7 +332,9 @@ lint_sass <- function(fix = FALSE) {
 #' }
 #' @export
 test_e2e <- function(interactive = FALSE) {
-  command <- ifelse(isTRUE(interactive), "test-e2e-interactive", "test-e2e")
-
-  yarn(command)
+  if (interactive) {
+    npm("run", "test-e2e-interactive")
+  } else {
+    npm("run", "test-e2e")
+  }
 }

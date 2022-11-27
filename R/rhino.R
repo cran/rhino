@@ -1,7 +1,3 @@
-node_path <- function(...) {
-  fs::path(".rhino", "node", ...)
-}
-
 rename_template_path <- function(path) {
   path <- fs::path_split(path)[[1]]
   path <- sub("^dot\\.", ".", path)
@@ -98,7 +94,6 @@ diagnostics <- function() {
     paste(Sys.info()[c("sysname", "release", "version")], collapse = " "),
     R.version.string,
     paste("rhino:", utils::packageVersion("rhino")),
-    paste("node:", system_cmd_version("node")),
-    paste("yarn:", system_cmd_version("yarn"))
+    paste("node:", system_cmd_version("node"))
   ))
 }
