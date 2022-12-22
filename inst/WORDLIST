@@ -14,6 +14,7 @@ Stylelint
 UI
 conf
 config
+cranlogs
 devtools
 entrypoint
 favicon
@@ -40,9 +41,9 @@ roxygen
 rstudio
 scalable
 shinyapps
+shinytest
 ui
 unintuitive
 usethis
 webpack
 yml
-Żyła
