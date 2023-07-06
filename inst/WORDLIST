@@ -4,6 +4,7 @@ ESLint
 Init
 JS
 JSON
+JSX
 LatinR
 LibSass
 PowerShell
@@ -12,6 +13,7 @@ Renv
 Renviron
 Rhinoverse
 Rprofile
+SDK
 Stylelint
 UI
 blogpost
@@ -34,6 +36,7 @@ modularization
 modularize
 modularized
 namespaced
+nodejs
 npm
 nvm
 overridable

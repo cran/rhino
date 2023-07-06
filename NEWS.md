@@ -1,4 +1,12 @@
-# rhino 1.3.1
+# rhino 1.4.0
+
+1. New `pkg_install()` and `pkg_remove()` functions to simplify dependency management in Rhino.
+2. Add support for using React in Rhino
+(tutorial, JS function `registerReactComponents()`, R function `react_component()`).
+3. Require box v1.3.1 or later (fixes issues with lazy-loaded data and trailing commas).
+4. Add E2E tests for the Rhino package (internal).
+
+# [rhino 1.3.1](https://github.com/Appsilon/rhino/releases/tag/v1.3.1)
 
 1. `test_r()` now clears the environment of loaded box modules before tests are run.
 This removes the need for `box::reload()` calls in tests.

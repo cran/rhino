@@ -6,12 +6,6 @@ setup_box_path <- function() {
   }
 }
 
-# Make it possible to reload the app without restarting the R session.
-purge_box_cache <- function() {
-  loaded_mods <- loadNamespace("box")$loaded_mods
-  rm(list = ls(loaded_mods), envir = loaded_mods)
-}
-
 configure_logger <- function() {
   config <- config::get()
   log_level <- config$rhino_log_level
@@ -65,6 +59,7 @@ with_head_tags <- function(ui) {
   wrap <- function(tag) {
     shiny::tagList(
       shiny::tags$head(
+        react_support(), # Needs to go before `app.min.js`, which defines the React components.
         shiny::tags$script(src = "static/js/app.min.js"),
         shiny::tags$link(rel = "stylesheet", href = "static/css/app.min.css", type = "text/css"),
         shiny::tags$link(rel = "icon", href = "static/favicon.ico", sizes = "any")
@@ -125,7 +120,7 @@ with_head_tags <- function(ui) {
 #' @export
 app <- function() {
   setup_box_path()
-  purge_box_cache()
+  box::purge_cache()
   configure_logger()
   shiny::addResourcePath("static", fs::path_wd("app", "static"))
 
