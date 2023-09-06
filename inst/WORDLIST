@@ -32,6 +32,7 @@ linter
 linters
 lockfile
 minified
+minifies
 modularization
 modularize
 modularized
@@ -53,3 +54,5 @@ unintuitive
 usethis
 webpack
 yml
+Addin
+Addins
