@@ -1,4 +1,19 @@
-# rhino 1.5.0
+# rhino 1.6.0
+
+1. `pkg_install` supports installation from local sources, GitHub, and Bioconductor.
+2. Improve Rhino CI (use latest versions and make better use of actions).
+3. Upgrade tools based on Node.js:
+    * `test_e2e()` now uses `cypress` 13.6
+    * `build_js()` now uses `webpack` 5.89
+    * `build_sass()` now uses `sass` 1.69
+    * `lint_js()` now uses `eslint` 8.56
+    * `lint_sass()` now uses `stylelint` 14.16 (the last major version supporting stylistic rules)
+    * Upgrade all remaining Node.js dependencies to latest versions and fix vulnerabilities.
+    * The minimum supported Node.js version is now 16.
+4. Introduce `RHINO_NPM` environment variable
+to allow using `npm` alternatives like `bun` and `pnpm`.
+
+# [rhino 1.5.0](https://github.com/Appsilon/rhino/releases/tag/v1.5.0)
 
 1. Add Rstudio Addins for lint, build and test Sass, R and JavaScript. Updated new module Addin.
 2. Fixes timeout during Cypress E2E tests with GitHub Actions.
