@@ -1,4 +1,18 @@
-# rhino 1.6.0
+# rhino 1.7.0
+
+1. Introduce linters for `box::use` statements:
+    * `box_universal_import_linter` checks if all imports are explicit.
+    * `box_trailing_commas_linter` checks if statements include trailing commas.
+    * `box_func_import_count_linter` checks if the number of function imports does not exceed the limit.
+    * `box_separate_calls_linter` checks if packages and modules are imported in separate statements.
+2. Major refactor of `rhino::app()`:
+    * The `request` parameter is now correctly forwarded to the UI function
+    when using a `legacy_entrypoint` ([#395](https://github.com/Appsilon/rhino/issues/395)).
+    * Force evaluation of arguments in higher-order functions
+    to avoid unexpected behavior due to lazy evaluation (internal).
+3. Add support for [`shiny.autoreload`](https://shiny.posit.co/r/reference/shiny/latest/shinyoptions).
+
+# [rhino 1.6.0](https://github.com/Appsilon/rhino/releases/tag/v1.6.0)
 
 1. `pkg_install` supports installation from local sources, GitHub, and Bioconductor.
 2. Improve Rhino CI (use latest versions and make better use of actions).
