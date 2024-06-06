@@ -1,4 +1,13 @@
-# rhino 1.7.0
+# rhino 1.8.0
+
+1. All linter functions migrated to `box.linters`. New rhino projects will be configured to use linters from `box.linters`.
+2. Updated GitHub Workflow template triggers.
+
+See _[How-to: Rhino 1.8 Migration Guide](https://appsilon.github.io/rhino/articles/how-to/migrate-1-8.html)_
+
+# [rhino 1.7.0](https://github.com/Appsilon/rhino/releases/tag/v1.7.0)
+
+See _[How-to: Rhino 1.7 Migration Guide](https://appsilon.github.io/rhino/articles/how-to/migrate-1-7.html)_
 
 1. Introduce linters for `box::use` statements:
     * `box_universal_import_linter` checks if all imports are explicit.
@@ -13,6 +22,8 @@
 3. Add support for [`shiny.autoreload`](https://shiny.posit.co/r/reference/shiny/latest/shinyoptions).
 
 # [rhino 1.6.0](https://github.com/Appsilon/rhino/releases/tag/v1.6.0)
+
+See _[How-to: Rhino 1.6 Migration Guide](https://appsilon.github.io/rhino/articles/how-to/migrate-1-6.html)_
 
 1. `pkg_install` supports installation from local sources, GitHub, and Bioconductor.
 2. Improve Rhino CI (use latest versions and make better use of actions).
