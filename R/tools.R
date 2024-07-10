@@ -233,6 +233,29 @@ lint_js <- function(fix = FALSE) {
   }
 }
 
+#' Format JavaScript
+#'
+#' Runs [prettier](https://prettier.io/) on JavaScript files in `app/js` directory.
+#' Requires Node.js installed.
+#'
+#' You can prevent prettier from formatting a given chunk of your code by adding a special comment:
+#' ```js
+#' // prettier-ignore
+#' ```
+#' Read more about [ignoring code](https://prettier.io/docs/en/ignore).
+#'
+#' @param fix If `TRUE`, fixes formatting. If FALSE, reports formatting errors without fixing them.
+#' @return None. This function is called for side effects.
+#'
+#' @export
+format_js <- function(fix = TRUE) {
+  if (fix) {
+    npm("run", "format-js", "--", "--write")
+  } else {
+    npm("run", "format-js", "--", "--check")
+  }
+}
+
 #' Build Sass
 #'
 #' Builds the `app/styles/main.scss` file into `app/static/css/app.min.css`.
@@ -260,6 +283,13 @@ lint_js <- function(fix = FALSE) {
 #' @export
 build_sass <- function(watch = FALSE) {
   config <- read_config()$sass
+  if (config == "custom") {
+    cli::cli_alert_warning(
+      "Using 'custom' configuration for 'sass'. Exiting without doing anything."
+    )
+    return(invisible())
+  }
+
   if (config == "node") {
     tryCatch(
       build_sass_node(watch = watch),
@@ -316,6 +346,29 @@ lint_sass <- function(fix = FALSE) {
     npm("run", "lint-sass", "--", "--fix")
   } else {
     npm("run", "lint-sass")
+  }
+}
+
+#' Format Sass
+#'
+#' Runs [prettier](https://prettier.io/) on Sass (.scss) files in `app/styles` directory.
+#' Requires Node.js installed.
+#'
+#' You can prevent prettier from formatting a given chunk of your code by adding a special comment:
+#' ```scss
+#' // prettier-ignore
+#' ```
+#' Read more about [ignoring code](https://prettier.io/docs/en/ignore).
+#'
+#' @param fix If `TRUE`, fixes formatting. If FALSE, reports formatting errors without fixing them.
+#' @return None. This function is called for side effects.
+#'
+#' @export
+format_sass <- function(fix = TRUE) {
+  if (fix) {
+    npm("run", "format-sass", "--", "--write")
+  } else {
+    npm("run", "format-sass", "--", "--check")
   }
 }
 

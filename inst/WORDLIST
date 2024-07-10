@@ -1,7 +1,6 @@
 Addin
 Addins
 Appsilon
-Boxifying
 ESLint
 Init
 JS
@@ -23,6 +22,7 @@ UI
 Webpack
 autoreload
 blogpost
+bslib
 conf
 config
 devtools
@@ -39,6 +39,7 @@ linters
 lockfile
 minified
 minifies
+mixins
 modularization
 modularize
 modularized
@@ -53,9 +54,12 @@ renv
 roxygen
 rstudio
 scalable
+scss
 shinyapps
 shinymanager
 shinytest
+theming
+tooltips
 ui
 unintuitive
 usethis
