@@ -1,6 +1,6 @@
 Package: rhino
 Title: A Framework for Enterprise Shiny Applications
-Version: 1.9.0
+Version: 1.10.0
 Authors@R: 
   c(
     person("Kamil", "Żyła", role = c("aut", "cre"), email = "opensource+kamil@appsilon.com"),
@@ -19,11 +19,11 @@ URL: https://appsilon.github.io/rhino/,
 BugReports: https://github.com/Appsilon/rhino/issues
 License: LGPL-3
 Encoding: UTF-8
-RoxygenNote: 7.3.1
+RoxygenNote: 7.3.2
 Depends: R (>= 2.10)
-Imports: box (>= 1.1.3), box.linters (>= 0.9.1), cli, config, fs, glue,
-        lintr (>= 3.0.0), logger, purrr, renv, rstudioapi, sass, shiny,
-        styler, testthat (>= 3.0.0), utils, withr, yaml
+Imports: box (>= 1.1.3), box.linters (>= 0.10.5), box.lsp, cli, config,
+        fs, glue, lintr (>= 3.0.0), logger, purrr, renv, rstudioapi,
+        sass, shiny, styler, testthat (>= 3.0.0), utils, withr, yaml
 Suggests: covr, knitr, mockery, rcmdcheck, rex, rlang, rmarkdown,
         shiny.react, spelling
 LazyData: true
@@ -31,7 +31,7 @@ Config/testthat/edition: 3
 Config/testthat/parallel: true
 Language: en-US
 NeedsCompilation: no
-Packaged: 2024-07-10 13:36:57 UTC; kamil
+Packaged: 2024-09-10 21:14:14 UTC; kuba
 Author: Kamil Żyła [aut, cre],
   Jakub Nowicki [aut],
   Leszek Siemiński [aut],
@@ -43,4 +43,4 @@ Author: Kamil Żyła [aut, cre],
   Appsilon Sp. z o.o. [cph]
 Maintainer: Kamil Żyła <opensource+kamil@appsilon.com>
 Repository: CRAN
-Date/Publication: 2024-07-10 14:10:02 UTC
+Date/Publication: 2024-09-10 21:30:02 UTC

@@ -1,4 +1,12 @@
-# rhino 1.9.0
+# rhino 1.10.0
+
+* Integrated `box.lsp` for auto-complete support for `box` modules in VS Code.
+* Integrated `box.linters` styling functions to style `box::use()` calls according to the Rhino style guide.
+* Added compatibility check for `treesitter` and `treesitter.r` dependencies
+
+# [rhino 1.9.0](https://github.com/Appsilon/rhino/releases/tag/v1.9.0)
+
+See _[How-to: Rhino 1.9 Migration Guide](https://appsilon.github.io/rhino/articles/how-to/migrate-1-9.html)_
 
 1. Added `sass: custom` configuration option for cleaner integration with `bslib`.
 2. Introduced `format_js()` and `format_sass()` powered by [prettier](https://prettier.io).
@@ -8,10 +16,10 @@
 
 # [rhino 1.8.0](https://github.com/Appsilon/rhino/releases/tag/v1.8.0)
 
+See _[How-to: Rhino 1.8 Migration Guide](https://appsilon.github.io/rhino/articles/how-to/migrate-1-8.html)_
+
 1. All linter functions migrated to `box.linters`. New rhino projects will be configured to use linters from `box.linters`.
 2. Updated GitHub Workflow template triggers.
-
-See _[How-to: Rhino 1.8 Migration Guide](https://appsilon.github.io/rhino/articles/how-to/migrate-1-8.html)_
 
 # [rhino 1.7.0](https://github.com/Appsilon/rhino/releases/tag/v1.7.0)
 
