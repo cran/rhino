@@ -1,8 +1,14 @@
-# rhino 1.10.0
+# rhino 1.10.1
 
-* Integrated `box.lsp` for auto-complete support for `box` modules in VS Code.
-* Integrated `box.linters` styling functions to style `box::use()` calls according to the Rhino style guide.
-* Added compatibility check for `treesitter` and `treesitter.r` dependencies
+* Added check for `box.lsp` package in `.Rprofile` before applying the `languageserver` options.
+
+# [rhino 1.10.0](https://github.com/Appsilon/rhino/releases/tag/v1.10.0)
+
+See _[How-to: Rhino 1.10 Migration Guide](https://appsilon.github.io/rhino/articles/how-to/migrate-1-10.html)_
+
+1. Integrated `box.lsp` for auto-complete support for `box` modules in VS Code.
+2. Integrated `box.linters` styling functions to style `box::use()` calls according to the Rhino style guide.
+3. Added compatibility check for `treesitter` and `treesitter.r` dependencies
 
 # [rhino 1.9.0](https://github.com/Appsilon/rhino/releases/tag/v1.9.0)
 

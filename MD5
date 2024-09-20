@@ -1,6 +1,6 @@
-c92ea73254f1193b56a6584fa6b579db *DESCRIPTION
+1cb322f98e1c94e80c28fa015714b3e0 *DESCRIPTION
 bafd50b4462c1bcc895aae49c0d8ba78 *NAMESPACE
-55f7e4b6999631bab30668ae295ba331 *NEWS.md
+a5933db6a348d0051b70c8ed47486144 *NEWS.md
 dd18052aeec683da52bafba85e1e76dd *R/addins.R
 10de0575db9bddc4e05bf63fd7f20ca2 *R/app.R
 7afcf93324b989530deb6441d4804558 *R/config.R
@@ -54,7 +54,7 @@ be2325ea1200e7c0152a0712dcfe53b6 *inst/templates/node/package-lock.json
 658b4ed84ba92143ecaae67bab21e40a *inst/templates/node/package.json
 b18c96701c9e65e2b9f55021396994f6 *inst/templates/node/prettier.config.mjs
 37b683076988eea1a1c0d4a738ded98d *inst/templates/node/webpack.config.js
-ce9d8222d490f5e58291799ba95ad148 *inst/templates/renv/dot.Rprofile
+fb876d4be80193b15737b441801fce1a *inst/templates/renv/dot.Rprofile
 fe26547978db36e0bf44ff35e36acab7 *inst/templates/renv/dot.renvignore
 2bcbb4843d20d7d59592d7eedf6d73a0 *inst/templates/rproj/Rproj.template
 f9ab97a1f2a9225be8361ae68ac14503 *inst/templates/unit_tests/tests/testthat/test-main.R
