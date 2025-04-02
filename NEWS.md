@@ -1,6 +1,14 @@
-# rhino 1.10.1
+# rhino 1.11.0
 
-* Added check for `box.lsp` package in `.Rprofile` before applying the `languageserver` options.
+1. Added destructure operator `%<-%`.
+2. `test_r` accepts additional arguments passed to `testthat::test_dir`.
+3. Bugfix for `format_r()` and single files. (#625)
+4. Added `auto_test_r` for automated rerunning R unit test after changing R files.
+5. Added `devmode` for running JS build, Sass build, R unit tests and the application in dev mode.
+
+# [rhino 1.10.1](https://github.com/Appsilon/rhino/releases/tag/v1.10.1)
+
+1. Added check for `box.lsp` package in `.Rprofile` before applying the `languageserver` options.
 
 # [rhino 1.10.0](https://github.com/Appsilon/rhino/releases/tag/v1.10.0)
 
@@ -41,7 +49,7 @@ See _[How-to: Rhino 1.7 Migration Guide](https://appsilon.github.io/rhino/articl
     when using a `legacy_entrypoint` ([#395](https://github.com/Appsilon/rhino/issues/395)).
     * Force evaluation of arguments in higher-order functions
     to avoid unexpected behavior due to lazy evaluation (internal).
-3. Add support for [`shiny.autoreload`](https://shiny.posit.co/r/reference/shiny/latest/shinyoptions).
+3. Add support for [`shiny.autoreload`](https://shiny.posit.co/r/reference/shiny/latest/shinyoptions.html).
 
 # [rhino 1.6.0](https://github.com/Appsilon/rhino/releases/tag/v1.6.0)
 

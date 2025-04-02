@@ -1,11 +1,14 @@
 Addin
 Addins
 Appsilon
+Bugfix
+Destructure
 ESLint
 Init
 JS
 JSON
 JSX
+LLM
 LatinR
 LibSass
 Pharmaverse
@@ -26,6 +29,9 @@ blogpost
 bslib
 conf
 config
+destructure
+destructuring
+dev
 devtools
 entrypoint
 favicon
